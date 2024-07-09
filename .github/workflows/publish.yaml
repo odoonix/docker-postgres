@@ -1,0 +1,19 @@
+name: publishpublish
+run-name: ${{ github.actor }} build new image
+on: [push]
+jobs:
+       publish-postgres-image:
+              runs-on: ubuntu-latest
+              steps:
+                     - uses: actions/checkout@v2
+                     - uses: docker/login-action@v1
+                       with:
+                              registry: ghcr.io
+                              username: ${{ github.actor }}
+                              password: ${{ secrets.GITHUB_TOKEN }}
+                     - name: Build the Postgres 13 Docker image
+                       run: |
+                              timetag=(`date +%Y%M%d`)
+                              docker build . --tag ghcr.io/viraweb123/docker-postgres:13.${timetag} --tag ghcr.io/viraweb123/docker-postgres:13
+                              docker push ghcr.io/viraweb123/docker-postgres:13
+                              docker push ghcr.io/viraweb123/docker-postgres:13.${timetag}
