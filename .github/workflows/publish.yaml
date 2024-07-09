@@ -14,6 +14,6 @@ jobs:
                      - name: Build the Postgres 13 Docker image
                        run: |
                               timetag=(`date +%Y%M%d`)
-                              docker build . --tag ghcr.io/viraweb123/docker-postgres:13.${timetag} --tag ghcr.io/viraweb123/docker-postgres:13
-                              docker push ghcr.io/viraweb123/docker-postgres:13
-                              docker push ghcr.io/viraweb123/docker-postgres:13.${timetag}
+                              docker build . --tag ghcr.io/viraweb123/postgres:13.${timetag} --tag ghcr.io/viraweb123/postgres:13
+                              docker push ghcr.io/viraweb123/postgres:13
+                              docker push ghcr.io/viraweb123/postgres:13.${timetag}
