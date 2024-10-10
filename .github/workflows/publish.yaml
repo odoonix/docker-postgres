@@ -11,9 +11,9 @@ jobs:
                               registry: ghcr.io
                               username: ${{ github.actor }}
                               password: ${{ secrets.GITHUB_TOKEN }}
-                     - name: Build the Postgres 13 Docker image
+                     - name: Build the Postgres 16 Docker image
                        run: |
                               timetag=(`date +%Y%M%d`)
-                              docker build . --tag ghcr.io/odoonix/postgres:13.${timetag} --tag ghcr.io/odoonix/postgres:13
-                              docker push ghcr.io/odoonix/postgres:13
-                              docker push ghcr.io/odoonix/postgres:13.${timetag}
+                              docker build . --tag ghcr.io/odoonix/postgres:16.${timetag} --tag ghcr.io/odoonix/postgres:16
+                              docker push ghcr.io/odoonix/postgres:16
+                              docker push ghcr.io/odoonix/postgres:16.${timetag}
