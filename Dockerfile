@@ -8,7 +8,7 @@ RUN apt-get update \
         postgresql-13-postgis-3 \
         postgresql-13-postgis-3-scripts \
     && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean \ 
+    && apt-get clean \
     && rm -rf var/cache/apt/archives/* \
     && mkdir -p "/docker-entrypoint-initdb.d" \
     && echo "CREATE EXTENSION IF NOT EXISTS postgis;" > /docker-entrypoint-initdb.d/postgis_o125.sql
