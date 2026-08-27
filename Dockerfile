@@ -14,31 +14,10 @@ RUN apt-get update \
            # ca-certificates: for accessing remote raster files;
            #   fix: https://github.com/postgis/docker-postgis/issues/307
            ca-certificates \
-           \
-           postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR=$POSTGIS_VERSION \
+           postgresql-$PG_MAJOR-pgvector \
+           postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR \
            postgresql-$PG_MAJOR-postgis-$POSTGIS_MAJOR-scripts \
       && rm -rf /var/lib/apt/lists/*
-
-
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-        build-essential \
-        git \
-        postgresql-server-dev-16 \
-        ca-certificates && \
-    git clone --branch v0.8.1 \
-        --depth 1 https://github.com/pgvector/pgvector.git /tmp/pgvector && \
-    cd /tmp/pgvector && \
-    make && \
-    make install && \
-    cd / && \
-    rm -rf /tmp/pgvector && \
-    apt-get purge -y \
-        build-essential \
-        git \
-        postgresql-server-dev-16 && \
-    apt-get autoremove -y && \
-    rm -rf /var/lib/apt/lists/*
 
       
 RUN mkdir -p /docker-entrypoint-initdb.d
